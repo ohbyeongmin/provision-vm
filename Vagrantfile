@@ -39,7 +39,7 @@ Vagrant.configure("2") do |config|
     nodejs.name = "install nodejs"
     nodejs.env  = {
       DEBIAN_FRONTEND:"noninteractive",
-      NODE_MAJOR:20
+      NODE_MAJOR:ENV['NODE_VERSION']
     }
     nodejs.path = "./scripts/nodejs.sh"
   end
@@ -56,9 +56,9 @@ Vagrant.configure("2") do |config|
     go.name = "install golang"
     go.env = {
       DEBIAN_FRONTEND:"noninteractive",
-      GO_VERSION: "1.21.6",
-      ARCH: "arm64",
-      SHELL: "/bin/zsh"
+      GO_VERSION:ENV['GO_VERSION'],
+      ARCH:ENV['ARCH'],
+      SHELL:ENV['SHELL']
     }
     go.privileged = false
     go.path = "./scripts/go.sh"
@@ -68,7 +68,7 @@ Vagrant.configure("2") do |config|
     foundry.name = "install foundry"
     foundry.env = {
       DEBIAN_FRONTEND:"noninteractive",
-      SHELL:"/bin/zsh"
+      SHELL:ENV['SHELL']
     }
     foundry.privileged = false
     foundry.path = "./scripts/foundry.sh"
@@ -78,11 +78,35 @@ Vagrant.configure("2") do |config|
     awscli.name = "install awscli"
     awscli.env = {
       DEBIAN_FRONTEND:"noninteractive",
-      SHELL:"/bin/zsh",
-      AWS_ACCESS_KEY: ENV['AWS_ACCESS_KEY'],
-      AWS_SECRET_KEY: ENV['AWS_SECRET_KEY']
+      SHELL:ENV['SHELL'],
+      AWS_ACCESS_KEY:ENV['AWS_ACCESS_KEY'],
+      AWS_SECRET_KEY:ENV['AWS_SECRET_KEY']
     }
     awscli.privileged = false
     awscli.path = "./scripts/awscli.sh"
+  end
+
+  config.vm.provision "shell" do |terraform|
+    terraform.name = "install terraform"
+    terraform.env = {
+      DEBIAN_FRONTEND:"noninteractive",
+      SHELL:ENV['SHELL'],
+    }
+    terraform.privileged = false
+    terraform.path = "./scripts/terraform.sh"
+  end
+
+  config.vm.provision "shell" do |kubectl|
+    kubectl.name = "install kubectl"
+    kubectl.env = {
+      DEBIAN_FRONTEND:"noninteractive",
+      SHELL:ENV['SHELL'],
+      KUBE_VERSION:ENV['KUBE_VERSION'],
+      KUBE_AWS_REGION:ENV['KUBE_AWS_REGION'],
+      KUBE_AWS_EKS_NAME:ENV['KUBE_AWS_EKS_NAME'],
+      ARCH:ENV['ARCH']
+    }
+    kubectl.privileged = false
+    kubectl.path = "./scripts/kubectl.sh"
   end
 end

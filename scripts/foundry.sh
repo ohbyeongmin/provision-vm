@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 curl -L https://foundry.paradigm.xyz | zsh
 

@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 sudo curl -LO https://go.dev/dl/go$GO_VERSION.linux-$ARCH.tar.gz
 sudo tar -C /usr/local -xzf go$GO_VERSION.linux-$ARCH.tar.gz

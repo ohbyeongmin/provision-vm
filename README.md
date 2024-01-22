@@ -1,6 +1,6 @@
 # Provision VM!
 
-Provision VM for your developement environment!
+Provision VM for your blockchain local developement environment!
 
 ## Prerequisite
 

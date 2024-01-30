@@ -72,3 +72,18 @@ $vagrant suspend
 ```bash
 $vagrant destroy
 ```
+
+## access remote access in VScode
+
+1. input ssh-config
+
+   ```bash
+   $vagrant ssh-config >> ~/.ssh
+   ```
+
+2. select host in vscode
+
+   - open your vscode
+   - shift + command + p
+   - select `Remote-SSH: Connect to Host`
+   - select your vm host

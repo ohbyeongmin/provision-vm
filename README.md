@@ -73,7 +73,7 @@ $vagrant suspend
 $vagrant destroy
 ```
 
-## access remote access in VScode
+## remote access in VScode
 
 1. input ssh-config
 
